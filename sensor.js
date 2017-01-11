@@ -16,10 +16,25 @@ let lastPub = null
 let token
 
 const defaultPublishData = { 
-  charging_station: {
+  parkertemperature: {
     data: "",
     time: "",
-    description: "The Status of the room at IDEO CoLab"
+    description: "The Status of the temperature in the room at IDEO CoLab"
+  },
+  parkerpressure: {
+    data: "",
+    time: "",
+    description: "The Status of the pressure in the room at IDEO CoLab"
+  },
+  parkergoaltemp: {
+    data: "",
+    time: "",
+    description: "The Status of the goal temperature in the room at IDEO CoLab"
+  },
+  parkeraltitude: {
+    data: "",
+    time: "",
+    description: "The Status of the altitude in the room at IDEO CoLab"
   }
 }
 const timeBetween =  60 * 1000 // 2 minutes
