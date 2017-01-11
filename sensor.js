@@ -9,7 +9,7 @@ const nomad = new Nomad()
 
 // Particle Device Setup
 // Atomic node 1
-const deviceID = '270022000851353531343431'
+const deviceID = '2b0045000247353138383138'
 
 let instance = null
 let lastPub = null
@@ -19,10 +19,10 @@ const defaultPublishData = {
   charging_station: {
     data: "",
     time: "",
-    description: "The status of charging station 1"
+    description: "The Status of the room at IDEO CoLab"
   }
 }
-const timeBetween =  2 * 60 * 1000 // 2 minutes
+const timeBetween =  60 * 1000 // 2 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 class DataMaintainer {
