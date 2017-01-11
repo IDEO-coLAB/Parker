@@ -1,25 +1,26 @@
 {
-  "name": "yahooweather",
-  "nomadName": "yahoo-weather-Phoenix-Maryland",
+  "name": "EV-Charging-Station-1",
+  "nomadName": "EV-Charging-Station-1",
   "version": "1.0.0",
-  "description": "Yahoo weather data of the current time on Phoenix, Maryland. Sourced from https://developer.yahoo.com/weather/#nodejs",
+  "description": "Status of Charging Station 1",
   "main": "sensor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/The-Chanman/house-furnace-anomaly.git"
+    "url": "git+https://github.com/The-Chanman/EV-charger-status"
   },
   "author": "Eric Chan <echan@ideo.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/The-Chanman/house-furnace-anomaly/issues"
+    "url": "https://github.com/The-Chanman/EV-charger-status/issues"
   },
-  "homepage": "https://github.com/The-Chanman/house-furnace-anomaly#readme",
+  "homepage": "https://github.com/The-Chanman/EV-charger-status#readme",
   "dependencies": {
+    "moment": "^2.16.0",
     "nightmare": "^2.9.1",
-    "node-fetch": "^1.6.3",
-    "nomad-stream": "0.0.6"
+    "nomad-stream": "0.0.6",
+    "particle-api-js": "^6.4.0"
   }
 }
