@@ -37,7 +37,7 @@ const defaultPublishData = {
     description: "The Status of the altitude in the room at IDEO CoLab"
   }
 }
-const timeBetween =  60 * 1000 // 2 minutes
+const timeBetween =  30 * 60 * 1000 // 2 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 class DataMaintainer {

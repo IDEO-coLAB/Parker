@@ -1,22 +1,22 @@
 {
-  "name": "EV-Charging-Station-1",
-  "nomadName": "EV-Charging-Station-1",
+  "name": "IDEO-Colab-Cambridge",
+  "nomadName": "IDEO-Colab-Cambridge",
   "version": "1.0.0",
-  "description": "Status of Charging Station 1",
+  "description": "IDEO-Colab-Cambridge core team room data",
   "main": "sensor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/The-Chanman/EV-charger-status"
+    "url": "git+https://github.com/The-Chanman/Parker"
   },
   "author": "Eric Chan <echan@ideo.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/The-Chanman/EV-charger-status/issues"
+    "url": "https://github.com/The-Chanman/Parker/issues"
   },
-  "homepage": "https://github.com/The-Chanman/EV-charger-status#readme",
+  "homepage": "https://github.com/The-Chanman/Parker#readme",
   "dependencies": {
     "moment": "^2.16.0",
     "nightmare": "^2.9.1",
