@@ -1,19 +1,21 @@
 module.exports = function checkSymphony(callback) {
+var Nightmare = require('nightmare');
+
 var nightmare = Nightmare();
 Promise.resolve(nightmare
   .viewport(1000, 1000)
   .goto('https://symphony.mywaterfurnace.com/account/login?redirect=/')
   .wait(2000)
   .evaluate(function(){
-    document.querySelector('input[id="emailaddress"]').value = SymphonyEmail
-    document.querySelector('input[id="password"]').value = SymphonyPwd
+    document.querySelector('input[id="emailaddress"]').value = "chrisbuzby@gmail.com"
+    document.querySelector('input[id="password"]').value = "Gridchain2017"
     return true
   })
-  .click('#loginbutton input')
+  .click('input[id="btnlogin"]')
   .wait(1000)
-  .goto('https://www.Symphony.com/groups/bierconomia')
+  .goto('https://symphony.mywaterfurnace.com/')
   .evaluate(function(){
-    var posts = document.getElementsByClassName('_1dwg')
+    var temp = document.getElementsByClassName('curtemp')
     var length = posts.length
     var postsContent = []
     for(var i = 0; i < length; i++){
