@@ -9,32 +9,22 @@ const nomad = new Nomad()
 
 // Particle Device Setup
 // Atomic node 1
-const deviceID = '2b0045000247353138383138'
+const deviceID = '3e0026000547353138383138'
 
 let instance = null
 let lastPub = null
 let token
 
 const defaultPublishData = { 
-  parkertemperature: {
+  parkerheaterfan: {
     data: "",
     time: "",
-    description: "The Status of the temperature in the room at IDEO CoLab"
+    description: "The Status of the HVAC fan in the room at IDEO CoLab"
   },
-  parkerpressure: {
+  fan: {
     data: "",
     time: "",
-    description: "The Status of the pressure in the room at IDEO CoLab"
-  },
-  parkergoaltemp: {
-    data: "",
-    time: "",
-    description: "The Status of the goal temperature in the room at IDEO CoLab"
-  },
-  parkeraltitude: {
-    data: "",
-    time: "",
-    description: "The Status of the altitude in the room at IDEO CoLab"
+    description: "The values of the fan in the room at IDEO CoLab"
   }
 }
 const timeBetween =  30 * 60 * 1000 // 2 minutes

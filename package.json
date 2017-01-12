@@ -1,8 +1,8 @@
 {
-  "name": "IDEO-Colab-Cambridge",
-  "nomadName": "IDEO-Colab-Cambridge",
+  "name": "IDEO-Colab-Cambridge-HVAC",
+  "nomadName": "IDEO-Colab-Cambridge-HVAC",
   "version": "1.0.0",
-  "description": "IDEO-Colab-Cambridge core team room data",
+  "description": "IDEO-Colab-Cambridge core team HVAC data",
   "main": "sensor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
