@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/The-Chanman/Parker#readme",
   "dependencies": {
+    "firebase": "^3.6.5",
     "moment": "^2.16.0",
     "nightmare": "^2.9.1",
     "node-fetch": "^1.6.3",
