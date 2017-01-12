@@ -87,7 +87,7 @@ particle.login(credentials)
   })
   .then((n) => {
     instance = n
-    return instance.publishRoot('hello this atomic node 1 of EV Charger')
+    return instance.publishRoot('hello this data from the home of colab cambridge')
   })
   .then(() => {
     //declaring last publish date
