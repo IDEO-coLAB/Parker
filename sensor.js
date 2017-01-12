@@ -27,7 +27,7 @@ const defaultPublishData = {
     description: "The values of the fan in the room at IDEO CoLab"
   }
 }
-const timeBetween =  30 * 60 * 1000 // 2 minutes
+const timeBetween = 30 * 60 * 1000 // 30 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 class DataMaintainer {
