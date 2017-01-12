@@ -9,7 +9,7 @@ let database = firebase.database();
 
 
 // subscription node ids
-const subscriptions = ['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6', 'QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']
+const subscriptions = ['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6', 'QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY','QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']
 
 let instance, lastPub, notificationBody
 
@@ -26,6 +26,11 @@ const defaultPublishData = {
     time: '',
     description: 'Weather in Cambridge, Ma' ,
     data: {},
+  },
+  [subscriptions[2]]: {
+    time: '',
+    description: 'Info about the Cambridge HVAC System' ,
+    data: {},
   }
 }
 
@@ -39,33 +44,16 @@ class DataMaintainer {
       case subscriptions[0]:{
         this.data[id]["time"] = value.time
         this.data[id]["data"] = value
-        try{
-          let messageListRef = database.ref('colabCore')
-          let newMessageRef = messageListRef.push();
-          newMessageRef.set({
-            'time': value.time,
-            'data': value
-          });
-        }
-        catch(err){
-          console.log("Message setting failed with error of " + err)
-        }
         break;
       }
       case subscriptions[1]:{
         this.data[id]["time"] = value.time
         this.data[id]["data"] = value.query.results
-        try{
-        let messageListRef = database.ref('weather')
-        let newMessageRef = messageListRef.push();
-        newMessageRef.set({
-          'time': value.time,
-          'data': value.query.results
-        });
-        }
-        catch(err){
-          console.log("Message setting failed with error of " + err)
-        }
+        break;
+      }
+      case subscriptions[2]:{
+        this.data[id]["time"] = value.time
+        this.data[id]["data"] = value
         break;
       }
       default:{
@@ -102,7 +90,7 @@ let dataManager = new DataMaintainer()
 nomad.prepareToPublish()
   .then((n) => {
     instance = n
-    return instance.publishRoot('Starting up Apple Inc. composite')
+    return instance.publishRoot('Starting up Parker History Composite')
   })
   .then(() => {
     lastPub = getTime()

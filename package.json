@@ -1,8 +1,8 @@
 {
-  "name": "Parker-Firebase",
-  "nomadName": "Parker-Firebase",
+  "name": "Parker-History-Composite",
+  "nomadName": "Parker-History-Composite",
   "version": "1.0.0",
-  "description": "Historical composite node that stores to Firebase",
+  "description": "Historical composite node that stores to Firebase and publishes to the dashboard report",
   "main": "sensor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
