@@ -1,6 +1,6 @@
 {
-  "name": "EV-Charging-Station-1",
-  "nomadName": "EV-Charging-Station-1",
+  "name": "Weather-Cambridge-MA-Yahoo",
+  "nomadName": "Weather-Cambridge-MA-Yahoo",
   "version": "1.0.0",
   "description": "Status of Charging Station 1",
   "main": "sensor.js",
@@ -9,17 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/The-Chanman/EV-charger-status"
+    "url": "git+https://github.com/The-Chanman/Parker"
   },
   "author": "Eric Chan <echan@ideo.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/The-Chanman/EV-charger-status/issues"
+    "url": "https://github.com/The-Chanman/Parker/issues"
   },
-  "homepage": "https://github.com/The-Chanman/EV-charger-status#readme",
+  "homepage": "https://github.com/The-Chanman/Parker#readme",
   "dependencies": {
     "moment": "^2.16.0",
     "nightmare": "^2.9.1",
+    "node-fetch": "^1.6.3",
     "nomad-stream": "0.0.6",
     "particle-api-js": "^6.4.0"
   }
