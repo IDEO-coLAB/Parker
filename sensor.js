@@ -9,23 +9,23 @@ let database = firebase.database();
 
 
 // subscription node ids
-const subscriptions = ['QmcWzGjo1Zu4yE9NtzBKXNJgEFcVWvgz1ipxtAhwWrvxX5', 'QmergwJPmTCEnUyR4gLrjzfKgeBixUbemqoFC78k6sbEZq']
+const subscriptions = ['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6', 'QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']
 
 let instance, lastPub, notificationBody
 
-const frequency = 30 * 60 * 1000 // 30 minutes 
+const frequency = 60 * 1000 // 30 minutes 
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 const defaultPublishData = { 
   [subscriptions[0]]: {
     time: '',
-    description: 'Quote for Apple stock' ,
+    description: 'Info about the Cambridge Core Team room' ,
     apple: {}
   },
   [subscriptions[1]]: {
-    description: 'Top news related to Apple from Google News',    
-    apple: {},
-    patents: {}
+    time: '',
+    description: 'Weather in Cambridge, Ma' ,
+    data: {},
   }
 }
 
@@ -38,20 +38,34 @@ class DataMaintainer {
     switch(id){
       case subscriptions[0]:{
         this.data[id]["time"] = value.time
-        this.data[id]["apple"] = value.results[0]
+        this.data[id]["data"] = value
+        try{
+          let messageListRef = database.ref('colabCore')
+          let newMessageRef = messageListRef.push();
+          newMessageRef.set({
+            'time': value.time,
+            'data': value
+          });
+        }
+        catch(err){
+          console.log("Message setting failed with error of " + err)
+        }
         break;
       }
       case subscriptions[1]:{
-        let news = value.apple.items
-        let patents = []
-        let i = news.length
-        while (i--){
-          if(news[i].title.toLowerCase().includes("patent")){
-            patents.push(news.splice(i, 1)[0])
-          }
+        this.data[id]["time"] = value.time
+        this.data[id]["data"] = value.query.results
+        try{
+        let messageListRef = database.ref('weather')
+        let newMessageRef = messageListRef.push();
+        newMessageRef.set({
+          'time': value.time,
+          'data': value.query.results
+        });
         }
-        this.data[id]["apple"] = news
-        this.data[id]["patents"] = patents
+        catch(err){
+          console.log("Message setting failed with error of " + err)
+        }
         break;
       }
       default:{

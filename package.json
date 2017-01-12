@@ -1,8 +1,8 @@
 {
-  "name": "Weather-Cambridge-MA-Yahoo",
-  "nomadName": "Weather-Cambridge-MA-Yahoo",
+  "name": "Parker-Firebase",
+  "nomadName": "Parker-Firebase",
   "version": "1.0.0",
-  "description": "Status of Charging Station 1",
+  "description": "Historical composite node that stores to Firebase",
   "main": "sensor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
