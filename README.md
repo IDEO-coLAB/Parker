@@ -1,5 +1,5 @@
-# Bernard Correlation website. 
-Demo showing the second ever living document that pulls from nodes that pull from sources across the internet to create a guardian spirit for the elderly by pulling all sorts of information.
+# Parker Demo website. 
+Demo showing the third ever living document that pulls from nodes that pull from sources across the internet to create a real time long term auditor for people's home.
 
 To run it first clone this repo.
 
