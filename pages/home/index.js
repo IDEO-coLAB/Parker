@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import R from 'ramda'
-
+import moment from 'moment'
 // import local css as s.
 import s from './styles.css'
 // import global css as gs
@@ -9,6 +9,16 @@ import gs from './../../styles/grid.css'
 function randomIntBtwNumbers(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+function getTime() {
+  return new moment()
+}
+
+let pressureUPCount = 0;
+let pressureCounts = 0;
+let lastHeaterStatus = false;
+let timeStartHeat;
+let timeStartOff;
 
 class CarSpot extends Component {
   render() {
@@ -25,7 +35,7 @@ class CarSpot extends Component {
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_office.png"} />
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.interiorCard}>
               <h3>interior</h3>
-              <h1>{(this.props.insideTemp)? this.props.insideTemp : "NA"}°</h1>
+              <h1>{(this.props.insideTemp)? Math.round(this.props.insideTemp) : "NA"}°</h1>
             </div>
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.exteriorCard}>
               <h3>exterior</h3>
@@ -40,27 +50,27 @@ class CarSpot extends Component {
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
             <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.closedCard}>
               <h3>closed</h3>
-              <h1>60%</h1>
+              <h1>{(this.props.pressureRatio)? this.props.pressureRatio : "NA"}%</h1>
             </div>
             <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.openedCard}>
               <h3>opened</h3>
-              <h1>40%</h1>
+              <h1>{(this.props.pressureRatio)? (100-this.props.pressureRatio) : "NA"}%</h1>
             </div>
           </div>
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
             <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.retainCard}>
               <h3>time retained</h3>
-              <h1>60%</h1>
+              <h1>{(this.props.timeHeating)? (this.props.timeHeating/60000) : "NA"}</h1>
             </div>
             <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.heatCard}>
               <h3>time to heat</h3>
-              <h1>40%</h1>
+              <h1>{(this.props.timeHeating)? (this.props.timeHeating/60000)  : "NA"}</h1>
             </div>
           </div>
         </div>
         <div className={s.grass}>
-          <h1>Cool info!</h1>
+          <h1>Cool info! Your house has a P value of {this.props.pValue? this.props.pValue.toFixed(2) : "NA"}</h1>
           <h2>Now that you know whats actually happening in your house, heres a couple tips and trciks personalized for you!</h2>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
@@ -128,7 +138,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props)
     this.state = {state:
-      { windSpeed: '', atmosphere: '', astronomy: '', conditions: '', insideTemp: '', insidePressure: '', goalTemp: '', insideAltitude: '', hvacStatus: '', hvacForce: ''}
+      { windSpeed: '', atmosphere: '', astronomy: '', conditions: '', insideTemp: '', insidePressure: '', goalTemp: '', insideAltitude: '', hvacStatus: '', hvacForce: '',}
     }
   }
 
@@ -185,17 +195,49 @@ class HomePage extends Component {
     const insideAltitude = (this.state.state.insideAltitude.data)
     const hvacStatus = (this.state.state.hvacStatus.data)
     const hvacForce = (this.state.state.hvacForce.data)
+    if(insidePressure > 101500){
+      pressureCounts++
+      pressureUPCount++
+    } else if (insidePressure <= 101500){
+      pressureCounts++
+    } 
+    let pressureRatio
+    if(pressureCounts != 0){
+      pressureRatio = Math.round((pressureUPCount/pressureCounts)*100)
+    } else {
+      pressureRatio = ''
+    }
 
+    let timeHeating,timeRetained
+    if(hvacStatus == "On" && lastHeaterStatus == false){
+      timeStartHeat = (this.state.state.hvacStatus.time)
+    } else if(hvacStatus == "On" && lastHeaterStatus == true){
+      timeHeating = (getTime()-timeStartHeat)
+    } else if (hvacStatus == "False" && lastHeaterStatus == true){
+      timeStartOff = (this.state.state.hvacStatus.time)
+    } else if (hvacStatus == "False" && lastHeaterStatus == false){
+      if(hvacStatus == undefined){
+        timeStartOff = getTime()
+        timeRetained = 0
+      }
+      timeRetained = (getTime()-timeStartOff)
+    }
     // const price0 = (this.state.state.price)? `$${this.state.state.price}` : ''
     // const price1 = (this.state.state[1].price)? `$${this.state.state[1].price}` : ''
     // const chargeTime0 = (this.state.state.timeCharging)? `Been charging for ${this.state.state.timeCharging.substring(0,6)} minutes` : ''
     // const chargeTime1 = (this.state.state[1].timeCharging)? `Been charging for ${this.state.state[1].timeCharging.substring(0,6)} minutes` : ''
     // const doing = (this.state.state.changeinPercent.includes('-')) ? 'poorly' : 'well'
     // const stockchange = (this.state.state.changeinPercent.includes('+')) ? 'increased' : 'decreased'
+    if (hvacStatus == undefined){
+      lastHeaterStatus = false
+    } else {
+      lastHeaterStatus = hvacStatus.includes('On') ? true : false
+    }
 
+    const pValue = (20 + (insideTemp-weatherTemp)) * (insideTemp/goalTemp)
     return (
       <div>
-        <CarSpot humidity={humidity} pressure={pressure} visibility={visibility} sunrise={sunrise} sunset={sunset} weatherTemp={weatherTemp} weatherText={weatherText} insideTemp={insideTemp} insidePressure={insidePressure} goalTemp={goalTemp} insideAltitude={insideAltitude} hvacStatus={hvacStatus} hvacForce={hvacForce} windSpeed={this.state.state.windSpeed} left="100" top="100"/>
+        <CarSpot pressureRatio={pressureRatio} humidity={humidity} pressure={pressure} visibility={visibility} sunrise={sunrise} sunset={sunset} weatherTemp={weatherTemp} weatherText={weatherText} insideTemp={insideTemp} insidePressure={insidePressure} goalTemp={goalTemp} insideAltitude={insideAltitude} hvacStatus={hvacStatus} hvacForce={hvacForce} windSpeed={this.state.state.windSpeed} timeHeating={timeHeating} timeRetained={timeRetained} pValue={pValue}left="100" top="100"/>
       </div>
     )
   }

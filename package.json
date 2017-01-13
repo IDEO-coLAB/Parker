@@ -15,6 +15,7 @@
     "del": "^2.2.1",
     "fastclick": "^1.0.6",
     "history": "^3.0.0",
+    "moment": "^2.17.1",
     "nomad-stream": "0.0.8",
     "path-to-regexp": "^1.5.3",
     "pixrem": "^3.0.1",
