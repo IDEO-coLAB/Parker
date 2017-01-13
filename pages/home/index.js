@@ -71,7 +71,7 @@ class CarSpot extends Component {
         </div>
         <div className={s.grass}>
           <h1>Cool info! Your house has a P value of {this.props.pValue? this.props.pValue.toFixed(2) : "NA"}</h1>
-          <h2>Now that you know whats actually happening in your house, heres a couple tips and trciks personalized for you!</h2>
+          <h2>Now that you know whats actually happening in your house, heres a couple tips and tricks personalized for you!</h2>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
             {/*}<img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
