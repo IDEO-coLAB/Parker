@@ -27,19 +27,35 @@ class CarSpot extends Component {
               <h3>interior</h3>
               <h1>60°</h1>
             </div>
-          </div>
-          <div className={s.floor}>
-            <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.exteriorCard}>
               <h3>exterior</h3>
               <h1>43°</h1>
             </div>
-          </div>
-          <div className={s.floor}>
-            <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.setCard}>
               <h3>set temp</h3>
               <h1>73°</h1>
+            </div>
+          </div>
+          <div className={s.floor}>
+            <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
+            <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.closedCard}>
+              <h3>closed</h3>
+              <h1>60%</h1>
+            </div>
+            <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.openedCard}>
+              <h3>opened</h3>
+              <h1>40%</h1>
+            </div>
+          </div>
+          <div className={s.floor}>
+            <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
+            <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.retainCard}>
+              <h3>closed</h3>
+              <h1>60%</h1>
+            </div>
+            <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.heatCard}>
+              <h3>opened</h3>
+              <h1>40%</h1>
             </div>
           </div>
         </div>

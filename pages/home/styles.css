@@ -134,6 +134,36 @@ border-top: 4px solid white;
   left: 852px;
 }
 
+.doorsFloorCard {
+  top: 916px;
+  width: 127px;
+}
+
+.closedCard {
+  background-color: #b88cbd;
+  left: 342px;
+}
+
+.openedCard {
+  background-color: #9dd5d0;
+  left: 801px;
+}
+
+.livingFloorCard {
+  top: 1302px;
+  width: 178px;
+}
+
+.retainCard {
+  background-color: #56abdd;
+  left: 397px;
+}
+
+.heatCard {
+  background-color: #ee5330;
+  left: 692px;
+}
+
 .babyCard h1 {
   font-family: 'noto-sans';
   font-weight: normal;
