@@ -143,6 +143,7 @@ class HomePage extends Component {
     let _this = this
     fetch('http://localhost:9000')
     .then(res => res.json())
+    .then(json => {
       // const state = [
       //   {available: true, price: 1},
       //   {available: false, price: 2},
@@ -160,10 +161,7 @@ class HomePage extends Component {
         goalTemp: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkergoaltemp'],
         insideAltitude: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkeraltitude'],
         hvacStatus: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['parkerheaterfan'],
-        hvacForce: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['fan'],
-        if(){
-
-        }
+        hvacForce: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['fan']
       }
 
       _this.setState({state})
