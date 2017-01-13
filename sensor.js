@@ -1,36 +1,32 @@
 const Nomad = require('nomad-stream')
 const moment = require('moment')
-const firebase = require('firebase');
-const fireConfig = require('./firebase.js');
 
 const nomad = new Nomad()
-firebase.initializeApp(fireConfig);
-let database = firebase.database();
-
 
 // subscription node ids
-const subscriptions = ['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6', 'QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY','QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']
+// weather, room, hvac
+const subscriptions = ['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY', 'QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6','QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']
 
 let instance, lastPub, notificationBody
 
-const frequency = 60 * 1000 // 30 minutes 
+const frequency =  60 * 1000 // 30 minutes 
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 const defaultPublishData = { 
   [subscriptions[0]]: {
     time: '',
-    description: 'Info about the Cambridge Core Team room' ,
-    apple: {}
-  },
-  [subscriptions[1]]: {
-    time: '',
     description: 'Weather in Cambridge, Ma' ,
     data: {},
   },
-  [subscriptions[2]]: {
+  [subscriptions[1]]: {
+    description: 'Information recieved from the CoLab Core Room',    
     time: '',
-    description: 'Info about the Cambridge HVAC System' ,
     data: {},
+  },
+  [subscriptions[2]]:{
+    description: 'Information recieved from the CoLab HVAC system',
+    time: '',
+    data: {}
   }
 }
 
@@ -43,16 +39,16 @@ class DataMaintainer {
     switch(id){
       case subscriptions[0]:{
         this.data[id]["time"] = value.time
-        this.data[id]["data"] = value
-        break;
-      }
-      case subscriptions[1]:{
-        this.data[id]["time"] = value.time
         this.data[id]["data"] = value.query.results
         break;
       }
+      case subscriptions[1]:{
+        this.data[id]["time"] = getTime()
+        this.data[id]["data"] = value
+        break;
+      }
       case subscriptions[2]:{
-        this.data[id]["time"] = value.time
+        this.data[id]["time"] = getTime()
         this.data[id]["data"] = value
         break;
       }
@@ -70,7 +66,8 @@ class DataMaintainer {
     return this.data
   }
   isAllFilled(){
-    return this.data[subscriptions[0]]['apple'] && this.data[subscriptions[0]]['time'] && this.data[subscriptions[1]]['apple']
+    return this.data[subscriptions[0]]['data'] && this.data[subscriptions[1]]['data'] 
+    // return this.data[subscriptions[0]]['data'] && this.data[subscriptions[1]]['data'] && this.data[subscriptions[2]]['data']
   }
   clear(){
     this.data = defaultPublishData
@@ -90,7 +87,7 @@ let dataManager = new DataMaintainer()
 nomad.prepareToPublish()
   .then((n) => {
     instance = n
-    return instance.publishRoot('Starting up Parker History Composite')
+    return instance.publishRoot('Starting up Parker composite node')
   })
   .then(() => {
     lastPub = getTime()
@@ -108,10 +105,12 @@ nomad.prepareToPublish()
       console.log(dataManager.toString())
       let currentTime = getTime()
       let timeSince = currentTime - lastPub
+      console.log(timeSince)
+      console.log(frequency)
       if (timeSince >= frequency){
         console.log('===================================> timeSince >= timeBetween')
         if (dataManager.isAllFilled()) {
-          console.log(dataManager.toString())
+          // console.log(dataManager.toString()
           instance.publish(dataManager.toString())
             .catch(err => console.log(`Error in publishing timeSince>=timeBetween negative state: ${JSON.stringify(err)}`))
         }
