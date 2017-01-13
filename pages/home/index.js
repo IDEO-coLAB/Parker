@@ -23,12 +23,24 @@ class CarSpot extends Component {
           </div>
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_office.png"} />
+            <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.interiorCard}>
+              <h3>interior</h3>
+              <h1>60°</h1>
+            </div>
           </div>
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
+            <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.exteriorCard}>
+              <h3>exterior</h3>
+              <h1>43°</h1>
+            </div>
           </div>
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
+            <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.setCard}>
+              <h3>set temp</h3>
+              <h1>73°</h1>
+            </div>
           </div>
         </div>
         <div className={s.grass}>
@@ -36,7 +48,7 @@ class CarSpot extends Component {
           <h2>Now that you know whats actually happening in your house, heres a couple tips and trciks personalized for you!</h2>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
-            <img className={s.cardImage} src={"../../assets/images/insulation.png"} />
+            {/*}<img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
             </div>
             <div className={s.textContainer}>
               <h1>Replace Insulation</h1>
@@ -52,7 +64,7 @@ class CarSpot extends Component {
           </div>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
-            <img className={s.cardImage} src={"../../assets/images/insulation.png"} />
+            {/* <img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
             </div>
             <div className={s.textContainer}>
               <h1>Close Your Blinds</h1>
@@ -65,7 +77,7 @@ class CarSpot extends Component {
           </div>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
-            <img className={s.cardImage} src={"../../assets/images/insulation.png"} />
+            {/* <img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
             </div>
             <div className={s.textContainer}>
               <h1>Replace Windows</h1>
@@ -78,7 +90,7 @@ class CarSpot extends Component {
           </div>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
-            <img className={s.cardImage} src={"../../assets/images/insulation.png"} />
+            {/* <img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
             </div>
             <div className={s.textContainer}>
               <h1>Be Cautious of Open Doors</h1>

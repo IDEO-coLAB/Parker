@@ -106,6 +106,50 @@ border-top: 4px solid white;
   color: #565656;
 }
 
+.babyCard {
+  position: absolute;
+  height: 90px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.officeFloorCard {
+  top: 513px;
+  width: 104px;
+}
+
+.interiorCard {
+  background-color: #f7c5a6;
+  left: 265px;
+}
+
+.exteriorCard {
+  background-color: #a4dbf5;
+  left: 557px;
+}
+
+.setCard {
+  background-color: #c1723d;
+  left: 852px;
+}
+
+.babyCard h1 {
+  font-family: 'noto-sans';
+  font-weight: normal;
+  font-size: 56px;
+  margin: 0px;
+  margin-top: -16px;
+}
+
+.babyCard h3 {
+  margin: 0;
+  font-family: 'noto-sans';
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
 .urgent {
   color: #ed4545;
 }
