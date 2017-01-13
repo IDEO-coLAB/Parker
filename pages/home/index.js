@@ -17,7 +17,18 @@ class CarSpot extends Component {
     const theClass = (this.props.isFree)? s.spotFree : s.spotTaken
     return (
       <div className={s.contentBody}>
-        Testing Shiz
+        <div className={s.attic}>
+          <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_attic.png"} />
+        </div>
+        <div className={s.floor}>
+          <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_office.png"} />
+        </div>
+        <div className={s.floor}>
+          <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
+        </div>
+        <div className={s.floor}>
+          <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
+        </div>
       </div>
     )
   }
@@ -27,7 +38,7 @@ class CarSpot extends Component {
 class HomePage extends Component {
   constructor(props) {
     super(props)
-    this.state = {state: 
+    this.state = {state:
       { windSpeed: '', atmosphere: '', astronomy: '', conditions: '', elderHeartRate: '', elderLightSensor: '', elderGPS: '', elderAccelerometer: '', gasSensor: '', energyMain: '', electricityUsage: '', electricityAppliances: '', electricityEvents: '', water: ''}
     }
   }
@@ -64,7 +75,7 @@ class HomePage extends Component {
         energyMain: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['smappee']['main'],
         electricityUsage: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['smappee']['usage']['electricity'],
         electricityAppliances: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['smappee']['usage']['appliances'],
-        electricityEvents: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['smappee']['events'],        
+        electricityEvents: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['smappee']['events'],
         water: parsed['QmdhnZLVkkPyEoyxGf238pPPMsKNjPS3cC3sFzSW3cbnQA']['water']
       }
 
@@ -76,8 +87,8 @@ class HomePage extends Component {
   }
 
   render() {
-    const sound = (randomIntBtwNumbers(0,1)) 
-    const recentInteraction = (randomIntBtwNumbers(0,1)) 
+    const sound = (randomIntBtwNumbers(0,1))
+    const recentInteraction = (randomIntBtwNumbers(0,1))
     const humidity = (this.state.state.atmosphere.humidity)
     const pressure = (this.state.state.atmosphere.pressure)
     const visibility = (this.state.state.atmosphere.visibility)
@@ -114,7 +125,7 @@ class HomePage extends Component {
 
     return (
       <div>
-        
+
         <CarSpot sound={sound} humidity={humidity} pressure={pressure} visibility={visibility} sunrise={sunrise} sunset={sunset} weatherTemp={weatherTemp} weatherText={weatherText} GPSlat={GPSlat} GPSlong={GPSlong} xAccel={xAccel} yAccel={yAccel} zAccel={zAccel} O3={O3} CO={CO} CO2={CO2} NO={NO} NO2={NO2} CH4={CH4} H2={H2} elecMain={elecMain} elecUsage={elecUsage} elecAppliances={elecAppliances} elecEvents={elecEvents} waterMain={waterMain} waterAppliances={waterAppliances} waterEvents={waterEvents} recentInteraction={recentInteraction} windSpeed={this.state.state.windSpeed} left="100" top="100" elderHeartRate={this.state.state.elderHeartRate} elderLightSensor={this.state.state.elderLightSensor} elecAppliances={elecAppliances}/>
       </div>
     )
