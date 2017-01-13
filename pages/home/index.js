@@ -36,12 +36,12 @@ class CarSpot extends Component {
           <h2>Now that you know whats actually happening in your house, heres a couple tips and trciks personalized for you!</h2>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
-            <img className={s.cardImage} src={"../../assets/images/HouseSiteMockup_attic.png"} />
+            <img className={s.cardImage} src={"../../assets/images/insulation.png"} />
             </div>
             <div className={s.textContainer}>
               <h1>Replace Insulation</h1>
-              <h2>When: Sometime in the next year</h2>
-              <h2>How much: $400-$1700</h2>
+              <h2>When: <span className={s.urgent}>Sometime in the next year</span></h2>
+              <h2>How much: <span className={s.urgent}>$400-$1700</span></h2>
               <p>We noticed your heater is working extra hard, especially compared to other homes similar to yours.
               We also noticed that it’s been really cold outside, so we think you might have heat escaping your home through the walls.
               You can prevent that by installing insulation in the walls. Imagine the stuffing inside of your thickest, warmest jacket….
