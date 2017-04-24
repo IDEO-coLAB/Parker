@@ -1,8 +1,5 @@
 // Sensor Notes:
 
-// Nomad Peer ID:
-// QmasbwPYUnBDvw8yFZ8TkgVXRJhUZjFWBfm5mPE3ET2CGx
-
 // Package being logged by particle
 // {
 //    data: 'Off',
