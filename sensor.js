@@ -3,7 +3,7 @@ const nomad = new Nomad()
 const fetch = require('node-fetch')
 
 let instance = null  // the nomad instance
-const pollFrequency =  60 * 1000 // 60 seconds
+const pollFrequency =  60 * 1000 * 30 // 30 mins
 const url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='cambridge, massachusetts')&format=json&env=store://datatables.org/alltableswithkeys`
 
 console.log('weather url:', url)
