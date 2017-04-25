@@ -42,8 +42,9 @@ const defaultPublishData = {
     description: "HVAC fan status in the IDEO CoLab"
   }
 }
-const timeBetween = 60 * 1000 * .5 // 30 minutes
-const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
+
+const timeBetween = 60 * 1000 * 2 // 2 minutes
+const timeThreshold = 60 * 60 * 1000 * 4 // 4 hours
 
 class DataMaintainer {
   constructor(){
