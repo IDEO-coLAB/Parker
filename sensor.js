@@ -5,7 +5,7 @@ const nomad = new Nomad()
 
 // subscription node ids
 // [ weather, room temp, hvac ]
-const subscriptions = ['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY', 'QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6','QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']
+const subscriptions = ['QmPyVxvvRNrMKcbWRmeM1MwPaSsJNcw3va3JJ2phiiCVHU', 'QmcDrKBGNf95JsnSgjiLH8cWFgXEejyFpQWx8gV3GBiwZD','QmasbwPYUnBDvw8yFZ8TkgVXRJhUZjFWBfm5mPE3ET2CGx']
 
 let instance, lastPub, notificationBody
 
