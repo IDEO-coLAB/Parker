@@ -5,11 +5,11 @@ const nomad = new Nomad()
 
 // subscription node ids
 // [ weather, room temp, hvac ]
-const subscriptions = ['QmPyVxvvRNrMKcbWRmeM1MwPaSsJNcw3va3JJ2phiiCVHU', 'QmcDrKBGNf95JsnSgjiLH8cWFgXEejyFpQWx8gV3GBiwZD','QmasbwPYUnBDvw8yFZ8TkgVXRJhUZjFWBfm5mPE3ET2CGx']
+const subscriptions = ['QmWPffJ8EYNBtQ7QNMF6GQ6VqoKARowZtiNNqxv8FZoXZq', 'QmcXyKkn6yVeWuTzBGmxc1PY7UVLkXVWhjWeHL9KneYo5e','QmYPex7vTAx3mjkRME39CvVFaxt28aJAfp4rXySMCUiMje']
 
 let instance, lastPub, notificationBody
 
-const frequency =  60 * 1000 // 30 minutes
+const frequency =  60 * 1000 * 30 // 30 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 const defaultPublishData = {
@@ -87,10 +87,13 @@ let dataManager = new DataMaintainer()
 nomad.prepareToPublish()
   .then((n) => {
     instance = n
-    return instance.publishRoot('Starting up Parker composite node')
+    console.log('preparing to publish the composite root')
+    return instance.publishRoot('Starting up composite node')
   })
   .then(() => {
+    console.log('composite root published')
     lastPub = getTime()
+
     nomad.subscribe(subscriptions, function(message) {
       console.log("==========================> Receieved a message for node " + message.id)
       console.log("==========================> Message was " + message.message)
@@ -109,6 +112,7 @@ nomad.prepareToPublish()
       console.log(frequency)
       if (timeSince >= frequency){
         console.log('===================================> timeSince >= timeBetween')
+
         if (dataManager.isAllFilled()) {
           // console.log(dataManager.toString()
           instance.publish(dataManager.toString())
@@ -122,6 +126,7 @@ nomad.prepareToPublish()
         console.log("***************************************************************************************")
         console.log('Heartbeat, I am alive but have not got data in a long time')
         console.log("***************************************************************************************")
+
         instance.publish('Heartbeat, I am alive but have not got data in a long time')
           .catch(err => console.log(`Error in publishing timeSince>=timeBetween: ${JSON.stringify(err)}`))
         dataManager.clear()
