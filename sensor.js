@@ -4,27 +4,27 @@ const moment = require('moment')
 const nomad = new Nomad()
 
 // subscription node ids
-// weather, room, hvac
+// [ weather, room temp, hvac ]
 const subscriptions = ['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY', 'QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6','QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']
 
 let instance, lastPub, notificationBody
 
-const frequency =  60 * 1000 // 30 minutes 
+const frequency =  60 * 1000 // 30 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
-const defaultPublishData = { 
+const defaultPublishData = {
   [subscriptions[0]]: {
     time: '',
-    description: 'Weather in Cambridge, Ma' ,
+    description: 'Weather in Cambridge, MA' ,
     data: {},
   },
   [subscriptions[1]]: {
-    description: 'Information recieved from the CoLab Core Room',    
+    description: 'CoLab room temperature',
     time: '',
     data: {},
   },
   [subscriptions[2]]:{
-    description: 'Information recieved from the CoLab HVAC system',
+    description: 'CoLab HVAC status',
     time: '',
     data: {}
   }
@@ -66,7 +66,7 @@ class DataMaintainer {
     return this.data
   }
   isAllFilled(){
-    return this.data[subscriptions[0]]['data'] && this.data[subscriptions[1]]['data'] 
+    return this.data[subscriptions[0]]['data'] && this.data[subscriptions[1]]['data']
     // return this.data[subscriptions[0]]['data'] && this.data[subscriptions[1]]['data'] && this.data[subscriptions[2]]['data']
   }
   clear(){
