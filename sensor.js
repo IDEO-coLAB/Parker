@@ -43,7 +43,7 @@ const defaultPublishData = {
   }
 }
 
-const timeBetween = 60 * 1000 * 2 // 2 minutes
+const timeBetween = 60 * 1000 * 30 // 30 minutes
 const timeThreshold = 60 * 60 * 1000 * 4 // 4 hours
 
 class DataMaintainer {
