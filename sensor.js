@@ -3,8 +3,8 @@ const nomad = new Nomad()
 const fetch = require('node-fetch')
 
 let instance = null  // the nomad instance
-const pollFrequency =  30 * 60 * 1000  // 60 seconds
-const url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22Cambridge%2C%20Massachusetts%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+const pollFrequency =  60 * 1000 // 60 seconds
+const url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='cambridge, massachusetts')&format=json&env=store://datatables.org/alltableswithkeys`
 
 console.log(url)
 
@@ -22,17 +22,21 @@ function startPoll(frequency) {
   setInterval(() => {
     getMessage()
       .then((m) => {
-        console.log('fetched:', m)
+        console.log('publishing on nomad:', m)
         return instance.publish(m)
       })
-      .catch(console.log)
+      .catch((err) => console.log('Weather error: ', err))
   }, frequency)
 }
 
 nomad.prepareToPublish()
   .then((node) => {
     instance = node
+    console.log('about to publish root')
     return instance.publishRoot('hello')
   })
-  .then(() => startPoll(pollFrequency))
+  .then(() => {
+    console.log('root published')
+    startPoll(pollFrequency)
+  })
   .catch(console.log)
