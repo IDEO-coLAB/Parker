@@ -6,7 +6,7 @@ let instance = null  // the nomad instance
 const pollFrequency =  60 * 1000 // 60 seconds
 const url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='cambridge, massachusetts')&format=json&env=store://datatables.org/alltableswithkeys`
 
-console.log(url)
+console.log('weather url:', url)
 
 function getMessage() {
   return fetch(url)
