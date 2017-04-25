@@ -42,7 +42,7 @@ const defaultPublishData = {
     description: 'IDEO CoLab room temperature'
   }
 }
-const timeBetween =  60 * 1000 * .5 // 2 minutes
+const timeBetween =  60 * 1000 * 30 // 30 minutes
 const timeThreshold = 4 * 60 * 60 * 1000 // 4 hours
 
 class DataMaintainer {
