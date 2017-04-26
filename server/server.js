@@ -7,10 +7,12 @@ const R = require('ramda')
 const Nomad = require('nomad-stream')
 
 const serverPort = 9000
-const nomadID = 'QmQk1igeTKxub1BULiJ9BGkw39YqWi7MEfvNTzo7ACAPEq'
+
+const compositeId = 'QmUhdBEXkXaRbdMHdTczPqcRyM6DciPJcjNkVogeTuwr4J'
+
 const nomad = new Nomad()
 
-let latestMessage = {key: 'value'}
+let latestMessage = { key: '' }
 
 function requestHandler(req, res) {
   res.setHeader('Content-Type', 'application/json')
@@ -32,7 +34,7 @@ server.listen(serverPort, (err) => {
   console.log(`server is listening on ${serverPort}`)
 })
 
-nomad.subscribe(nomadID, (message) => {
+nomad.subscribe(compositeId, (message) => {
   console.log(`got message ${message.message}`)
   latestMessage = message.message
 })

@@ -20,7 +20,7 @@ let lastHeaterStatus = false;
 let timeStartHeat;
 let timeStartOff;
 
-class CarSpot extends Component {
+class HomeImage extends Component {
   render() {
     const left = `${this.props.left}px`
     const top = `${this.props.top}px`
@@ -28,9 +28,11 @@ class CarSpot extends Component {
     return (
       <div className={s.contentBody}>
         <div className={s.house}>
+
           <div className={s.attic}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_attic.png"} />
           </div>
+
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_office.png"} />
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.interiorCard}>
@@ -43,9 +45,10 @@ class CarSpot extends Component {
             </div>
             <div className={s.babyCard + ' ' + s.officeFloorCard + ' ' + s.setCard}>
               <h3>set temp</h3>
-              <h1>{(this.props.goalTemp)? this.props.goalTemp : "NA"}°</h1>
+              <h1>{(this.props.goalTemp)? this.props.goalTemp : "75"}°</h1>
             </div>
           </div>
+
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
             <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.closedCard}>
@@ -57,6 +60,7 @@ class CarSpot extends Component {
               <h1>{(this.props.pressureRatio)? (100-this.props.pressureRatio) : "NA"}%</h1>
             </div>
           </div>
+
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
             <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.retainCard}>
@@ -69,6 +73,7 @@ class CarSpot extends Component {
             </div>
           </div>
         </div>
+
         <div className={s.grass}>
           <h1>Cool info! Your house has a P value of {this.props.pValue? this.props.pValue.toFixed(2) : "NA"}</h1>
           <h2>Now that you know whats actually happening in your house, heres a couple tips and tricks personalized for you!</h2>
@@ -133,12 +138,20 @@ class CarSpot extends Component {
   }
 }
 
-
 class HomePage extends Component {
   constructor(props) {
     super(props)
-    this.state = {state:
-      { windSpeed: '', atmosphere: '', astronomy: '', conditions: '', insideTemp: '', insidePressure: '', goalTemp: '', insideAltitude: '', hvacStatus: '', hvacForce: '',}
+    this.state = {
+      state: {
+        // weather
+        atmosphere: '',
+        astronomy: '',
+        conditions: '',
+        // room
+        insideTemp: '',
+        // hvac
+        hvacStatus: '',
+      }
     }
   }
 
@@ -154,25 +167,29 @@ class HomePage extends Component {
     fetch('http://localhost:9000')
     .then(res => res.json())
     .then(json => {
-      // const state = [
-      //   {available: true, price: 1},
-      //   {available: false, price: 2},
-      // ]
-      console.log(json)
       const parsed = JSON.parse(json)
-      debugger
+      // console.log('parsed:', json)
+
       const state = {
-        windSpeed: parsed['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']['data']['channel']['wind']['speed'],
-        atmosphere: parsed['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']['data']['channel']['atmosphere'],
-        astronomy: parsed['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']['data']['channel']['astronomy'],
-        conditions: parsed['QmULmQvxP7RYMHjQDcze6G5FoV4EaFKN5gC7Di7TrmUqKY']['data']['channel']['item']['condition'],
-        insideTemp: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkertemperature'],
-        insidePressure: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkerpressure'],
-        goalTemp: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkergoaltemp'],
-        insideAltitude: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkeraltitude'],
-        hvacStatus: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['parkerheaterfan'],
-        hvacForce: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['fan']
+        // weather
+        atmosphere: parsed['QmWPffJ8EYNBtQ7QNMF6GQ6VqoKARowZtiNNqxv8FZoXZq']['data']['channel']['atmosphere'],
+        astronomy: parsed['QmWPffJ8EYNBtQ7QNMF6GQ6VqoKARowZtiNNqxv8FZoXZq']['data']['channel']['astronomy'],
+        conditions: parsed['QmWPffJ8EYNBtQ7QNMF6GQ6VqoKARowZtiNNqxv8FZoXZq']['data']['channel']['item']['condition'],
+
+        // room
+        insideTemp: parsed['QmcXyKkn6yVeWuTzBGmxc1PY7UVLkXVWhjWeHL9KneYo5e']['data']['roomtemperature'],  // 68
+        // insideTemp: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkertemperature'],
+        // insidePressure: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkerpressure'],
+        // goalTemp: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkergoaltemp'],
+        // insideAltitude: parsed['QmREQVyyNum1RVRW9b4kKYHGsmmRovTsWTaTuBej9JBWx6']['data']['parkeraltitude'],
+
+        // hvac
+        hvacStatus: parsed['QmYPex7vTAx3mjkRME39CvVFaxt28aJAfp4rXySMCUiMje']['data']['heater'], // 'On' | 'Off'
+        // hvacStatus: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['parkerheaterfan'],
+        // hvacForce: parsed['QmTzKsdeNiTmpeHBhq9uA8QYYPBvRTJjdPU6usrbP3SFso']['data']['fan']
       }
+
+      console.log('incoming state: ', state)
 
       _this.setState({state})
 
@@ -181,7 +198,8 @@ class HomePage extends Component {
     })
   }
 
-  render() {  
+  render() {
+    // weather
     const humidity = (this.state.state.atmosphere.humidity)
     const pressure = (this.state.state.atmosphere.pressure)
     const visibility = (this.state.state.atmosphere.visibility)
@@ -189,55 +207,29 @@ class HomePage extends Component {
     const sunset = (this.state.state.astronomy.sunset)
     const weatherTemp = (this.state.state.conditions.temp)
     const weatherText = (this.state.state.conditions.text)
+    // room
     const insideTemp = (this.state.state.insideTemp.data)
-    const insidePressure = (this.state.state.insidePressure.data)
-    const goalTemp = (this.state.state.goalTemp.data)
-    const insideAltitude = (this.state.state.insideAltitude.data)
+    // hvac
     const hvacStatus = (this.state.state.hvacStatus.data)
-    const hvacForce = (this.state.state.hvacForce.data)
-    if(insidePressure > 101500){
-      pressureCounts++
-      pressureUPCount++
-    } else if (insidePressure <= 101500){
-      pressureCounts++
-    } 
-    let pressureRatio
-    if(pressureCounts != 0){
-      pressureRatio = Math.round((pressureUPCount/pressureCounts)*100)
-    } else {
-      pressureRatio = ''
-    }
 
-    let timeHeating,timeRetained
-    if(hvacStatus == "On" && lastHeaterStatus == false){
-      timeStartHeat = (this.state.state.hvacStatus.time)
-    } else if(hvacStatus == "On" && lastHeaterStatus == true){
-      timeHeating = (getTime()-timeStartHeat)
-    } else if (hvacStatus == "False" && lastHeaterStatus == true){
-      timeStartOff = (this.state.state.hvacStatus.time)
-    } else if (hvacStatus == "False" && lastHeaterStatus == false){
-      if(hvacStatus == undefined){
-        timeStartOff = getTime()
-        timeRetained = 0
-      }
-      timeRetained = (getTime()-timeStartOff)
-    }
-    // const price0 = (this.state.state.price)? `$${this.state.state.price}` : ''
-    // const price1 = (this.state.state[1].price)? `$${this.state.state[1].price}` : ''
-    // const chargeTime0 = (this.state.state.timeCharging)? `Been charging for ${this.state.state.timeCharging.substring(0,6)} minutes` : ''
-    // const chargeTime1 = (this.state.state[1].timeCharging)? `Been charging for ${this.state.state[1].timeCharging.substring(0,6)} minutes` : ''
-    // const doing = (this.state.state.changeinPercent.includes('-')) ? 'poorly' : 'well'
-    // const stockchange = (this.state.state.changeinPercent.includes('+')) ? 'increased' : 'decreased'
     if (hvacStatus == undefined){
       lastHeaterStatus = false
-    } else {
-      lastHeaterStatus = hvacStatus.includes('On') ? true : false
     }
 
-    const pValue = (20 + (insideTemp-weatherTemp)) * (insideTemp/goalTemp)
     return (
       <div>
-        <CarSpot pressureRatio={pressureRatio} humidity={humidity} pressure={pressure} visibility={visibility} sunrise={sunrise} sunset={sunset} weatherTemp={weatherTemp} weatherText={weatherText} insideTemp={insideTemp} insidePressure={insidePressure} goalTemp={goalTemp} insideAltitude={insideAltitude} hvacStatus={hvacStatus} hvacForce={hvacForce} windSpeed={this.state.state.windSpeed} timeHeating={timeHeating} timeRetained={timeRetained} pValue={pValue}left="100" top="100"/>
+        <HomeImage
+          humidity={humidity}
+          pressure={pressure}
+          visibility={visibility}
+          sunrise={sunrise}
+          sunset={sunset}
+          weatherTemp={weatherTemp}
+          weatherText={weatherText}
+          insideTemp={insideTemp}
+          hvacStatus={hvacStatus}
+          left="100"
+          top="100" />
       </div>
     )
   }
