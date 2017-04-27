@@ -53,30 +53,30 @@ class HomeImage extends Component {
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_doors.png"} />
             <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.closedCard}>
               <h3>closed</h3>
-              <h1>{(this.props.pressureRatio)? this.props.pressureRatio : "NA"}%</h1>
+              <h1>Yes</h1>
             </div>
             <div className={s.babyCard + ' ' + s.doorsFloorCard + ' ' + s.openedCard}>
-              <h3>opened</h3>
-              <h1>{(this.props.pressureRatio)? (100-this.props.pressureRatio) : "NA"}%</h1>
+              <h3>closed</h3>
+              <h1>No</h1>
             </div>
           </div>
 
           <div className={s.floor}>
             <img className={s.floorimage} src={"../../assets/images/HouseSiteMockup_living.png"} />
             <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.retainCard}>
-              <h3>time retained</h3>
-              <h1>{(this.props.timeHeating)? (this.props.timeHeating/60000) : "NA"}</h1>
+              <h3>hvac status</h3>
+              <h1>{this.props.hvacStatus}</h1>
             </div>
             <div className={s.babyCard + ' ' + s.livingFloorCard + ' ' + s.heatCard}>
-              <h3>time to heat</h3>
-              <h1>{(this.props.timeHeating)? (this.props.timeHeating/60000)  : "NA"}</h1>
+              <h3>mins to heat</h3>
+              <h1>12</h1>
             </div>
           </div>
         </div>
 
         <div className={s.grass}>
-          <h1>Cool info! Your house has a P value of {this.props.pValue? this.props.pValue.toFixed(2) : "NA"}</h1>
-          <h2>Now that you know whats actually happening in your house, heres a couple tips and tricks personalized for you!</h2>
+          <h1>Your house has an R-value of 23</h1>
+          <h2>Now that you know whats actually happening in your house, here are a few personalized tips.</h2>
           <div className={s.suggestioncard}>
             <div className={s.imageContainer}>
             {/*}<img className={s.cardImage} src={"../../assets/images/insulation.png"} /> */}
@@ -88,8 +88,7 @@ class HomeImage extends Component {
               <h2>Cost: <span className={s.cost}>$400-$1700</span></h2>
               <p>We noticed your heater is working extra hard, especially compared to other homes similar to yours.
               We also noticed that it’s been really cold outside, so we think you might have heat escaping your home through the walls.
-              You can prevent that by installing insulation in the walls. Imagine the stuffing inside of your thickest, warmest jacket….
-              But in your walls! Mind. Blown.
+              You can prevent that by installing insulation in the walls.
               </p>
             </div>
           </div>
@@ -102,7 +101,7 @@ class HomeImage extends Component {
               <h2>Your Energy Benefit: <span className={s.medium}>Recommended</span></h2>
               <h2>Estimated Return: <span className={s.price}>$120 annually</span></h2>
               <h2>Cost: <span className={s.cost}>$400-$1700</span></h2>
-              <p>We noticed that your top floor bedroom is typically warmer than anywhere else in the house. We noticed during the day it was very bright in that room, but the lights were off, which could mean your blinds/shades are open. It’s been sunny the past couple days, and that sunlight is probably heating up your room, so if you’d like to cooler, just try closing the blinds!
+              <p>We noticed that your top floor bedroom is typically warmer than anywhere else in the house. We noticed during the day it was very bright in that room, but the lights were off, which could mean your blinds/shades are open. It’s been sunny the past couple days, and that sunlight is probably heating up your room, so if you’d like to cooler, just try closing the blinds.
               </p>
             </div>
           </div>

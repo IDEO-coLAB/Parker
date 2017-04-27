@@ -53,13 +53,13 @@ file) using composes keyword */
 .suggestioncard {
   background-color: #fff8f0;
   border-radius: 30px;
-  margin: 0 20px;
+  margin: 0px 20px 40px 20px;
   padding: 60px;
   -webkit-box-shadow: 0px 5px 0px -2px rgba(122,193,110,1);
--moz-box-shadow: 0px 5px 0px -2px rgba(122,193,110,1);
-box-shadow: 0px 10px 0px -2px rgba(122,193,110,1);
-border-bottom: 4px solid #ffecd6;
-border-top: 4px solid white;
+  -moz-box-shadow: 0px 5px 0px -2px rgba(122,193,110,1);
+  box-shadow: 0px 10px 0px -2px rgba(122,193,110,1);
+  border-bottom: 4px solid #ffecd6;
+  border-top: 4px solid white;
 }
 
 .cardImage {
